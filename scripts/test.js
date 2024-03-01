@@ -132,11 +132,10 @@ console.log("Test this....");
 
 // get val from user
 function getPosIntVal() {
-  // get a `Number` from the user NOT a string
+  // get a `Number`
   let val = Number(prompt("enter a whole number greater than Zero"));
 
-  // Check val in an integer greater than zero then return it
-  // otherwise alert the user & `return "Undefined"`
+  // Check val
   return Number.isInteger(val) && val > 0
     ? val
     : alert("number not supported. Try again!");
@@ -144,18 +143,14 @@ function getPosIntVal() {
 
 // return a number to the power of `n`
 function pow() {
-  let radix; // var to hold a `Number` for the radix value
-  const num = getPosIntVal(); // get a `Number`
+  let radix;
+  const num = getPosIntVal();
 
   // check we got a number back from `getPosIntVal()`
-  // before we try to get a value for the radix
-  // end the program if we don't have a `Number`
   if (!num) return console.log("ERROR: No number to multiply");
   radix = getPosIntVal();
 
   // Check we got a `Number` for the radix
-  // before trying to return the answer
-  // end the program if we don't have a `Number`
   if (!radix) return alert("No radix to multiply the number by <|3¬/");
 
   return alert(`${num}^${radix} = ${num ** radix}`);
