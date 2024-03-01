@@ -1,0 +1,24 @@
+:root {
+  background-color: burlywood;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  padding: 1rem;
+}
+
+.mainPara {
+  background-color: chocolate;
+  padding: 1rem;
+}
+
+.subPara {
+  padding: 1rem 2rem 1rem 2rem;
+  text-align: justify;
+  line-height: 1.4;
+}
