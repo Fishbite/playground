@@ -131,6 +131,7 @@ console.log("Test this....");
 // min(4, 10);
 
 // get val from user
+// @return positive integer greater than zero
 function getPosIntVal() {
   // get a `Number`
   let val = Number(prompt("enter a whole number greater than Zero"));
@@ -141,10 +142,10 @@ function getPosIntVal() {
     : alert("number not supported. Try again!");
 }
 
-// return a number to the power of `n`
+// @return raise `num` to integer power `radix`
 function pow() {
   let radix;
-  const num = getPosIntVal();
+  const num = getPosIntVal(); // prompt for user input
 
   // check we got a number back from `getPosIntVal()`
   if (!num) return console.log("ERROR: No number to multiply");
@@ -157,3 +158,85 @@ function pow() {
 }
 
 // ******  function shit END ******\\
+
+// ******  objects shit START ******\\
+
+// ******
+// let user = {
+//   name: "John",
+//   age: 30
+// };
+
+// let key = prompt("What do you want to know about the user?", "name");
+
+// // access by variable
+// alert( user[key] ); // John (if enter "name")
+// ******
+
+// ******
+// let fruit = prompt("Which fruit to buy?", "apple");
+
+// let bag = {
+//   [fruit]: 5, // the name of the property is taken from the variable fruit
+// };
+
+// alert(bag.apple); // 5 if fruit="apple"
+// ******
+
+// ******
+// let user = {
+//   name: "John",
+//   age: 30,
+//   isAdmin: true,
+// };
+
+// for (let arse in user) {
+//   // keys
+//   alert(arse); // name, age, isAdmin
+//   // values for the keys
+//   alert(user[arse]); // John, 30, true
+// }
+
+// const user = {};
+// user.name = "john";
+// user.surname = "Smith";
+// user.name = "pete";
+// delete user.name;
+
+// console.log(user);
+// ******
+
+// ******
+// let schedule = {};
+
+// // schedule["08:30"] = "get up";
+// // schedule["08:35"] = "shit, shower, shave";
+
+// isEmpty(schedule);
+
+// function isEmpty(obj) {
+//   // NOTE: loop will only start if `obj` is not empty
+//   for (let key in obj) {
+//     console.log(false, obj);
+//     return false;
+//   }
+//   console.log(true, obj);
+//   return true;
+// }
+// ******
+
+// ******
+let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130,
+};
+
+let sum = 0;
+for (key in salaries) {
+  console.log(salaries[key]);
+  sum += salaries[key];
+}
+console.log(sum);
+// ******
+// ******  objects shit END ******\\
