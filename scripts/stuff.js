@@ -1,4 +1,4 @@
-console.log("Test this....");
+// console.log("Test this....");
 
 // let firstName = "";
 // let lastName = "";
@@ -226,17 +226,120 @@ function pow() {
 // ******
 
 // ******
-let salaries = {
-  John: 100,
-  Ann: 160,
-  Pete: 130,
+// sum salaries
+// let salaries = {
+//   John: 100,
+//   Ann: 160,
+//   Pete: 130,
+// };
+
+// let sum = 0;
+// for (key in salaries) {
+//   console.log(salaries[key]);
+//   sum += salaries[key];
+// }
+// console.log(sum);
+
+// // before the call
+// // sum numeric values
+// let menu = {
+//   width: 200,
+//   height: 300,
+//   title: "My menu",
+//   depth: 250,
+// };
+
+// function multiplyNumeric(obj) {
+//   for (let val in obj) {
+//     // if typeof `is a number` it returns the string 'number'
+//     // so check loosely if `val == "number"`
+//     typeof obj[val] == "number"
+//       ? (obj[val] *= 2)
+//       : console.log(obj[val], "can't do it!");
+//   }
+//   console.log(menu);
+// }
+
+// multiplyNumeric(menu);
+// ******
+
+// ******
+let calculator = {
+  sum() {
+    alert(this.a + this.b); // just for testing
+    return this.a + this.b;
+  },
+
+  mul() {
+    alert(`${this.a} * ${this.b} = ${this.a * this.b}`); // just for testing
+    return this.a * this.b;
+  },
+
+  read() {
+    this.a = +prompt("Enter val 'a':");
+    this.b = +prompt("Enter val 'b'");
+  },
 };
 
-let sum = 0;
-for (key in salaries) {
-  console.log(salaries[key]);
-  sum += salaries[key];
-}
-console.log(sum);
+// calculator.read();
+// calculator.sum();
+// calculator.mul();
+// ******
+
+// ******
+// let ladder = {
+//   step: 0,
+//   up() {
+//     this.step++;
+//     return this;
+//   },
+//   down() {
+//     this.step--;
+//     return this;
+//   },
+//   showStep: function () {
+//     // shows the current step
+//     alert(this.step);
+//     return this;
+//   },
+// };
+
+// ladder.up();
+// ladder.up();
+// ladder.down();
+// ladder.showStep(); // 1
+// ladder.down();
+// ladder.showStep(); // 0
+
+// ladder.up().up().showStep(); // 2
+// ladder.up().up().showStep().up().up().showStep(); // 4 then 6
+// ladder.down().showStep(); // 5
+// // ******
+
 // ******
 // ******  objects shit END ******\\
+
+// ******  Numbers shit START ******\\
+// ******
+function getTwoNums() {
+  const a = +prompt("a?", "");
+  const b = parseFloat(prompt("b?", ""));
+
+  return {
+    a,
+    b,
+  };
+}
+
+function sum(func) {
+  let tot = 0;
+  for (let i in func) {
+    tot += func[i];
+  }
+  alert(tot);
+  return tot;
+}
+
+console.log(sum(getTwoNums()));
+// ******
+// ******  Numbers shit END ******\\
