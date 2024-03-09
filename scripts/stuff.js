@@ -587,13 +587,14 @@ const enrolled2019 = mathStudents
 container.innerHTML += enrolled2019;
 
 // using `map` on objects:
-const scores = { math: 50, English: 70, Physics: 45, Agric: 60 };
+const scores = { math: 50, English: 70, Physics: 45, Agriculture: 60 };
 // get the `entries` from the object first with `Object.entries`
 // then `map` the scores
 const newScore = Object.entries(scores).map((score, index) => {
   console.log(score); // ["subject", value]
   return `<h3>${score[0]}: ${score[1]}</h3>`;
 });
+console.log(newScore);
 container.innerHTML += newScore;
 
 // using `split` with `map`
