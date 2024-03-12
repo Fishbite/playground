@@ -469,7 +469,7 @@ console.log(
 );
 
 // chain `map` with other array methods:
-// sum even numbers
+// square even numbers
 const squaredEven = numbers
   .filter(function (val, index) {
     console.log("filtering!", val % 2 === 0, index);
@@ -592,11 +592,17 @@ const scores = { math: 50, English: 70, Physics: 45, Agriculture: 60 };
 // then `map` the scores
 const newScore = Object.entries(scores).map((score, index) => {
   console.log(score); // ["subject", value]
-  return `<h3>${score[0]}: ${score[1]}</h3>`;
-});
-console.log(newScore);
-container.innerHTML += newScore;
 
+  // write directly to the page to avoid commas - see below
+  // however, this is called an `anti-pattern` because we are NOT using
+  // the resultant array produced by `map`. consider using `foreach` `forof`
+  // if you have no use for the new array produced by `map`
+  return (container.innerHTML += `<h3>${score[0]}: ${score[1]}</h3>`);
+});
+// console.log(newScore);
+container.innerHTML += newScore; // adds array content to GUI with commas!
+
+// ****** TASKS ****** \\
 // using `split` with `map`
 function camelize(str) {
   let splitStrArr = str
@@ -609,6 +615,27 @@ function camelize(str) {
   return splitStrArr;
 }
 console.log(camelize("camelcase-this-word"));
+
+// look for elements with values higher or equal to a and lower or equal to b
+// and return a result as a new array.
+
+let arrToSort = [5, 3, 8, 1];
+
+let filtered = filterRange(arrToSort, 1, 4);
+
+console.log(filtered);
+
+function filterRange(arr, a, b) {
+  // let filtered = []; // don't need this
+  // arr.filter((val, index, arr) => {
+  //   // // console.log(val >= a && val <= b);
+  //   // val >= a && val <= b ? filtered.push(val) : null; // don't `push`
+  // });
+  return arr.filter(function (val) {
+    // return val >= a && val <= b ? val : null; // no need to do this:
+    return val >= a && val <= b;
+  });
+}
 
 // ******
 // ******  Arrays END ******\\
