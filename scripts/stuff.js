@@ -619,7 +619,7 @@ console.log(camelize("camelcase-this-word"));
 // look for elements with values higher or equal to a and lower or equal to b
 // and return a result as a new array.
 
-let arrToSort = [4, 5, 3, 8, 1, 9, 2];
+let arrToSort = [7, 4, 5, 3, 8, 1, 9, 2, 15];
 
 let filtered = filterRange(arrToSort, 1, 4);
 
@@ -638,14 +638,27 @@ function filterRange(arr, a, b) {
 }
 
 // Remove values from original `arr` that are outside of the range:
-filterRangeInPlace(arrToSort, 1, 4);
+// filterRangeInPlace(arrToSort, 1, 4);
 function filterRangeInPlace(arr, a, b) {
   for (let i = 0; i <= arr.length; i++) {
     if (arr[i] < a || arr[i] > b) {
       arr.splice(i, 1);
+      console.log(i);
     }
   }
 }
 console.log("arrToSort:", arrToSort); // array has been modified!
+
+// sort in decreasing order
+arrToSort.sort((a, b) => b - a);
+console.log(arrToSort);
+
+// function to return a copy of a sorted array:
+function copyAndSort(arr) {
+  return arr.slice(0).sort();
+}
+let arrOfStrings = ["HTML", "JavaScript", "CSS"];
+console.log(copyAndSort(arrOfStrings));
+
 // ******
 // ******  Arrays END ******\\
