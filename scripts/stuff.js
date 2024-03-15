@@ -660,5 +660,53 @@ function copyAndSort(arr) {
 let arrOfStrings = ["HTML", "JavaScript", "CSS"];
 console.log(copyAndSort(arrOfStrings));
 
+// Map to Objects
+let john = { name: "John", surname: "Smith", id: 1 };
+let pete = { name: "Pete", surname: "Hunt", id: 2 };
+let mary = { name: "Mary", surname: "Key", id: 3 };
+
+let users1 = [john, pete, mary];
+// console.log(users1);
+
+function mapUsers(arr) {
+  return arr.map((user) => {
+    return { fullName: `${user.name} ${user.surname}`, id: user.id };
+  });
+  // console.log(usersMapped);
+}
+let mappedUsers = mapUsers(users1);
+console.log(mappedUsers);
 // ******
 // ******  Arrays END ******\\
+
+// ******  Iterables START ******\\
+
+let range = {
+  from: 1,
+  to: 5,
+};
+
+range[Symbol.iterator] = function () {
+  // ...it returns the iterator object:
+  // 2. Onward, for..of works only with the iterator object below, asking it for next values
+  return {
+    current: this.from,
+    last: this.to,
+
+    // 3. next() is called on each iteration by the for..of loop
+    next() {
+      // 4. it should return the value as an object {done:.., value :...}
+      if (this.current <= this.last) {
+        return { done: false, value: this.current++ };
+      } else {
+        return { done: true };
+      }
+    },
+  };
+};
+
+for (item of range) {
+  console.log(item);
+}
+
+// ******  Iterables END ******\\
