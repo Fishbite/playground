@@ -886,4 +886,10 @@ for (let value of visitorsSet) {
 visitorsSet.forEach((value, valueAgain, set) => {
   console.log("`forEach` value:", value);
 });
+
+// can also use `set.keys()`, `set.values(), `set.entries()`
+console.log(visitorsSet.values());
+
+// iteration over `map` & `set` are always in insertion order
+// but we can't change the order or get an element by its number
 // ******  Sets END ******\\
