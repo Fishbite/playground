@@ -754,7 +754,7 @@ myMap.set(true, "bool"); // a boolean key
 console.log(myMap);
 
 // **** the `Map` can also use objects as `keys`: ****
-// which we can't use with ordinaruy `Objects`
+// which we can't use with ordinary `Objects`
 //  Take a user object `johnny`:
 const johnny = { name: "johnny" };
 // store the visit count for every user:
@@ -892,4 +892,65 @@ console.log(visitorsSet.values());
 
 // iteration over `map` & `set` are always in insertion order
 // but we can't change the order or get an element by its number
+
+// **** Tasks
+// create an array of unique values from the array below
+const buddah = [
+  "Hare",
+  "Krishna",
+  "Hare",
+  "Krishna",
+  "Krishna",
+  "Krishna",
+  "Hare",
+  "Hare",
+  ":-O",
+];
+
+function makeUniqueArr(arr) {
+  // let set = new Set(arr);
+  // arr.forEach((value) => set.add(value));
+  // alternatively - do it the short way!
+  return Array.from(new Set(arr));
+}
+
+console.log(makeUniqueArr(buddah));
+
+// write a function that returns an array cleared of anograms
+const anogramArr = [
+  "nap",
+  "teachers",
+  "cheaters",
+  "PAN",
+  "ear",
+  "era",
+  "hectares",
+  "arse",
+  "earth",
+  "Heart",
+  "ears",
+];
+
+function clearAnograms(arr) {
+  const map = new Map();
+
+  // loop through each word in the array
+  arr.forEach((word) => {
+    // create the `key` name for the `map` from each word in `arr`
+    const key = word.toLowerCase(word).split("").sort().join("");
+    console.log("key", key);
+
+    // set each key / value pair of the map
+    // note: each key / value pair will be overwritten with the latest!
+    // e.g. `aers → "arse"` overwritten with `aers → "ears"` as "ears" comes last
+    // in the processing chain i.e. last array entry
+    map.set(key, word);
+    console.log("map:", map);
+  });
+
+  return Array.from(map.values());
+}
+
+console.log(clearAnograms(anogramArr));
+
 // ******  Sets END ******\\
