@@ -948,6 +948,7 @@ function clearAnograms(arr) {
     console.log("map:", map);
   });
 
+  // we don't need `keys` in the final array, so just map the `values` in the `Map`
   return Array.from(map.values());
 }
 
