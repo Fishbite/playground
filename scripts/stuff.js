@@ -937,8 +937,8 @@ function clearAnograms(arr) {
   // loop through each word in the array
   arr.forEach((word) => {
     // create the `key` name for the `map` from each word in `arr`
-    const key = word.toLowerCase(word).split("").sort().join("");
-    console.log("key", key);
+    const key = word.toLowerCase().split("").sort().join("");
+    // console.log("key", key);
 
     // set each key / value pair of the map
     // note: each key / value pair will be overwritten with the latest!
