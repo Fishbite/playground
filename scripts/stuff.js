@@ -955,3 +955,68 @@ function clearAnograms(arr) {
 console.log(clearAnograms(anogramArr));
 
 // ******  Sets END ******\\
+
+// ******  WeakMap START ******\\
+
+// It's all about memory management!!!
+
+// let's say we have this arrangement:
+let john1 = { name: "john" };
+let array = [john1];
+console.log(array);
+/* 
+  Array [ {…} ]
+    0: Object { name: "john" }
+    length: 1 
+*/
+
+//  now if we null out the jonh1 object
+john1 = null;
+console.log(john1); // null
+//  but:
+console.log(array); // the john1 obj still exists in the array
+/* 
+  Array [ {…} ]
+    0: Object { name: "john" }
+    length: 1 
+*/
+
+let john2 = { name: "john" };
+let john2Map = new Map();
+john2Map.set(john2, "some other data");
+console.log(john2Map);
+/*
+Map { {…} → "some other data" }
+  size: 1
+  <entries>
+    0: Object { name: "john" } → "some other data"
+*/
+// ... and we have the same problem when we null out john2:
+john2 = null;
+console.log(john2); // null
+console.log(john2Map);
+// john2 obj still exists in the map:
+/*
+Map { {…} → "some other data" }
+  size: 1
+  <entries>
+    0: Object { name: "john" } → "some other data"
+*/
+
+// with WeakMap, that problem dissapears:
+let john3 = { name: "john3" };
+let john3WeakMap = new WeakMap();
+john3WeakMap.set(john3, "some more other data...");
+console.log(john3WeakMap);
+/*
+  WeakMap { {…} → "some more other data..." }
+    <entries>
+      0: Object { name: "john" } → "some more other data..."
+*/
+
+// now null out john3
+john3 = null;
+console.log(john3); // null
+console.log(john3WeakMap); // john3 should be gone from the WeakMap. But it's not!!!???
+// We'll come back to this one :¬/
+// ******  WeakMap END ******\\
