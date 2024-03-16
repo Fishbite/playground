@@ -710,3 +710,127 @@ for (item of range) {
 }
 
 // ******  Iterables END ******\\
+
+// ******  Maps START ******\\
+// A `Map` has key-value pairs, similar to an object, except that a `Map`
+// can have keys of any data type, not just strings.
+// The key type is retained & NOT converted to a string.
+// map[key] = "some val" is not the right way to use `Map`
+// use the `Map` methods instead: map.set()` `map.get()`etc.
+
+const myMap = new Map();
+
+myMap.set("1", "str"); // a string key
+/*
+  Map { 1 → "str" }
+    size: 1
+    <entries>
+      0: 1 → "str"
+*/
+myMap.set(1, "num"); // a numeric key
+
+/*
+  Map { 1 → "str", 1 → "num" }
+    size: 2
+    <entries>
+      0: 1 → "str"
+      1: 1 → "num"
+*/
+myMap.set(true, "bool"); // a boolean key
+/*
+  Map(3) { 1 → "str", 1 → "num", true → "bool" }
+    size: 3
+    <entries>
+      0: 1 → "str"
+        <key>: "1"
+        <value>: "str"
+      1: 1 → "num"
+        <key>: 1
+        <value>: "num"
+      2: true → "bool"
+        <key>: true
+        <value>: "bool"
+*/
+console.log(myMap);
+
+// **** the `Map` can also use objects as `keys`: ****
+// which we can't use with ordinaruy `Objects`
+//  Take a user object `johnny`:
+const johnny = { name: "johnny" };
+// store the visit count for every user:
+const visitCount = new Map();
+visitCount.set(johnny, 123); // set the object `johnny` as the key with `123` as its value
+/*
+  Map { {…} → 123 }
+    size: 1
+    <entries>
+      0: Object { name: "johnny" } → 123
+        <key>: Object { name: "johnny" }
+        <value>: 123
+*/
+
+console.log(visitCount.get(johnny)); // → 123
+
+// Every `map.set()` call returns the `map` itself, so we can chain the calls:
+myMap.set("1", "1").set(1, 1).set(true, "bool");
+
+// **** Looping over `Maps`
+// when a `Map` is created we can pass an array of `key` / `value` pairs
+// to initialize it:
+const recipeMap = new Map([
+  ["cucumber", 500],
+  ["tomatoes", 350],
+  ["onion", 50],
+]);
+console.log("get cucumber:", recipeMap.get("cucumber")); // 500
+
+// iterate over `keys`:
+// there are 3 methods for looping over `Maps`
+// `map.keys()`, `map.values()`, map.entries()`
+for (let veg of recipeMap.keys()) {
+  console.log("keys:", veg);
+}
+
+// iterate over `values`:
+for (let value of recipeMap.keys()) {
+  console.log("values", value);
+}
+
+// iterate over `entries`:
+for (let entry of recipeMap.entries()) {
+  console.log("entries", entry);
+}
+
+// **** 'Map` preserves the order in which 'keys' were inserted
+// `Map` also has a built-in `forEach` method, similar to `Array`
+recipeMap.forEach((value, key, map) => {
+  console.log(`key: ${key}, value: ${value}`);
+});
+
+// create a `Map` from an object using `Object.entries()`:
+const johnObj = { name: "john", age: 34 };
+const johnMap = new Map(Object.entries(johnObj));
+
+console.log("johnMap.get('name'):", johnMap.get("name")); // john
+
+console.log("johnMap:", johnMap);
+/*
+  Map { name → "john", age → 34 }
+    size: 2
+    <entries>
+      0: name → "john"
+      1: age → 34
+*/
+
+// Create an `Object` from `Map`
+const food = new Map([
+  ["banana", 1],
+  ["orange", 2],
+  ["meat", 4],
+]);
+// use `Object.fromEntries` to create an `Object` from a map
+// could be used when a third party requires an object to work with
+const objFromMap = Object.fromEntries(food.entries()); // can omit `entries()` if you like
+console.log("`Object` from `Map` `objFromMap`:", objFromMap); // `Object` from `Map` `objFromMap`: Object { banana: 1, orange: 2, meat: 4 }
+
+// ******  Maps END ******\\
