@@ -945,7 +945,7 @@ function clearAnograms(arr) {
     // e.g. `aers → "arse"` overwritten with `aers → "ears"` as "ears" comes last
     // in the processing chain i.e. last array entry
     map.set(key, word);
-    console.log("map:", map);
+    // console.log("map:", map);
   });
 
   // we don't need `keys` in the final array, so just map the `values` in the `Map`
