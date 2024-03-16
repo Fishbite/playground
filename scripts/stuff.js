@@ -834,3 +834,56 @@ const objFromMap = Object.fromEntries(food.entries()); // can omit `entries()` i
 console.log("`Object` from `Map` `objFromMap`:", objFromMap); // `Object` from `Map` `objFromMap`: Object { banana: 1, orange: 2, meat: 4 }
 
 // ******  Maps END ******\\
+
+// ******  Sets START ******\\
+// A `Set` is a special type collection - sets of `values` without `keys`
+// Each value may occur only once
+// useful for storing visitor info for example, without duplicates being added
+// upon a second / third visit etc.
+const visitorsSet = new Set();
+console.log("visitorSet:", visitorsSet); // Set []
+/*
+  visitorSet: 
+    Set []
+    size: 0
+    <entries>
+*/
+
+const johnForSet = { name: "john" };
+const maryForSet = { name: "mary" };
+const peteForSet = { name: "pete" };
+
+// some users visit multiple times:
+visitorsSet.add(johnForSet);
+visitorsSet.add(maryForSet);
+visitorsSet.add(peteForSet);
+visitorsSet.add(johnForSet); // has no effect because value `johnForSet` exists already
+visitorsSet.add(maryForSet); // has no effect because value `maryForSet` exists already
+
+console.log("visitorSet:", visitorsSet);
+/*
+  visitorSet: 
+    Set(3) [ {…}, {…}, {…} ]
+      size: 3
+      <entries>
+        0: Object { name: "john" }
+        1: Object { name: "mary" }
+        2: Object { name: "pete" }
+*/
+
+// Iterations over a `Set`
+// We can use `for...of` or `forEach` to loop over a `Set`:
+for (let value of visitorsSet) {
+  console.log("`for...of` value:", value);
+}
+/*
+  value: Object { name: "john" }
+  value: Object { name: "mary" }
+  value: Object { name: "pete" }
+*/
+
+// and `forEach`:,
+visitorsSet.forEach((value, valueAgain, set) => {
+  console.log("`forEach` value:", value);
+});
+// ******  Sets END ******\\
