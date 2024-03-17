@@ -1007,6 +1007,7 @@ Map { {…} → "some other data" }
 let john3 = { name: "john3" };
 let john3WeakMap = new WeakMap();
 john3WeakMap.set(john3, "some more other data...");
+console.log(john3WeakMap.get(john3)); // "some more other data..."
 console.log(john3WeakMap);
 /*
   WeakMap { {…} → "some more other data..." }
@@ -1017,6 +1018,68 @@ console.log(john3WeakMap);
 // now null out john3
 john3 = null;
 console.log(john3); // null
-console.log(john3WeakMap); // john3 should be gone from the WeakMap. But it's not!!!???
+console.log(john3WeakMap); //
 // We'll come back to this one :¬/
+
+let arse = { name: "John" };
+
+let weakMap = new WeakMap();
+weakMap.set(arse, "Still here!");
+console.log(weakMap.get(arse)); //
+
+arse = null; // overwrite the reference
+console.log(weakMap.get(arse)); // undefined
+
+// ****** test
+let visitsCountMap = new WeakMap(); // map: user => visits count
+
+// increase the visits count
+function countUser(user) {
+  let count = visitsCountMap.get(user) || 0;
+  visitsCountMap.set(user, count + 1);
+}
+
+let pam = { name: "Pam" };
+
+countUser(pam); // count his visits
+console.log(visitsCountMap.get(pam)); // 1
+
+// later pam leaves us
+pam = null;
+console.log(visitsCountMap); // still shows `pam` obj, but it's unreachable. See below:
+console.log(visitsCountMap.get(pam)); // undefined
+
 // ******  WeakMap END ******\\
+
+// ******  keys values entries START ******\\
+let salaries = {
+  John: 100,
+  Pete: 300,
+  Mary: 250,
+};
+
+function sumSalaries(obj) {
+  let values = Object.values(salaries);
+  let sum = 0;
+  for (let value of values) {
+    sum += value;
+  }
+  return sum;
+}
+console.log(sumSalaries(salaries));
+
+// count No. of properties in an Object
+
+function countObjProps(obj) {
+  console.log(Object.keys(obj));
+  return Object.keys(obj).length; // ignores Symbolic properties
+}
+
+let mai = {
+  name: "Mai",
+  age: 23,
+};
+
+console.log(countObjProps(mai));
+
+// ******  keys values entries END ******\\
