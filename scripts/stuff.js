@@ -1082,4 +1082,19 @@ let mai = {
 
 console.log(countObjProps(mai));
 
-// ******  keys values entries END ******\\
+// ******  destructuring Arrays START ******\\
+
+let wes = ["Wesley", "Jones"];
+let [firstName, lastName] = wes;
+console.log(firstName, lastName); // Wesley Jones
+
+let ann = ["Ann", "Mary", "Jones"];
+[firstName, middleName, lastName] = ann;
+console.log(firstName, middleName, lastName); // Ann Mary Jones
+
+let mike = ["Mike", "Hunt", "Sweat"];
+[firstName, , lastName] = mike; // skip / exclude value with commas
+console.log(firstName, lastName); // Mike Sweat
+// console.log(firstName, secondName, lastName); // Error: secondName is undefined
+
+// ******  destructuring Arrays END ******\\
