@@ -1084,17 +1084,96 @@ console.log(countObjProps(mai));
 
 // ******  destructuring Arrays START ******\\
 
-let wes = ["Wesley", "Jones"];
+const wes = ["Wesley", "Jones"];
 let [firstName, lastName] = wes;
 console.log(firstName, lastName); // Wesley Jones
 
-let ann = ["Ann", "Mary", "Jones"];
+const ann = ["Ann", "Mary", "Jones"];
 [firstName, middleName, lastName] = ann;
 console.log(firstName, middleName, lastName); // Ann Mary Jones
 
-let mike = ["Mike", "Hunt", "Sweat"];
+const mike = ["Mike", "Hunt", "Sweat"];
 [firstName, , lastName] = mike; // skip / exclude value with commas
 console.log(firstName, lastName); // Mike Sweat
 // console.log(firstName, secondName, lastName); // Error: secondName is undefined
 
+// we can use destructuring when iterating over an iterable object
+// say we have mike's record:
+const mikesRecord = {
+  firstName: "Mike",
+  lastName: "Hunt",
+  age: 104,
+};
+
+// then we iterate over it with a `for...of` loop using `Object.entries(obj)
+for (let [key, value] of Object.entries(mikesRecord)) {
+  console.log("key:", key, "value:", value);
+}
+
+// and the code is a little simpler for a `Map` as the object is iterable
+const mikesMapRecord = new Map([
+  ["firstName", "Mike"],
+  ["lastName", "Hunt"],
+  ["age:", 121],
+]);
+
+for (let [key, val] of mikesMapRecord) {
+  console.log(key, val);
+}
+
+let [name1, name2, ...rest] = [
+  "Julius",
+  "Caesar",
+  "Consul",
+  "of the Roman Republic",
+];
+// ...rest is an array starting from the third index
+console.log(rest[0]);
+console.log(rest[1]);
+
+// ...................
+let user = {
+  name: "John",
+  years: 30,
+};
+console.log("user:", user);
+
+let { name, years: age, isAdmin = false } = user;
+console.log(name, age, isAdmin); // John 30 false
+
+// ....................
+salaries = {
+  John: 100,
+  Pete: 300,
+  Mary: 250,
+};
+
+function topSalary(obj) {
+  let top = null;
+  let maxName = null;
+  for (let [name, salary] of Object.entries(obj)) {
+    // console.log(name, salary);
+    salary > top ? ((top = salary), (maxName = name)) : maxName, top;
+  }
+  return `${maxName} ${top}`;
+}
+console.log(topSalary(salaries));
+
 // ******  destructuring Arrays END ******\\
+
+// ******  date & time START ******\\
+let now = new Date();
+console.log(now); // shows current date/time
+
+// 0 means 01.01.1970 UTC+0
+let Jan01_1970 = new Date(0);
+console.log(Jan01_1970);
+
+// now add 24 hours, get 02.01.1970 UTC+0
+let Jan02_1970 = new Date(24 * 3600 * 1000);
+console.log(Jan02_1970);
+
+let Jan01_1971 = new Date(365 * 24 * 3600 * 1000);
+console.log(Jan01_1971);
+
+// ******  date & time END ******\\
