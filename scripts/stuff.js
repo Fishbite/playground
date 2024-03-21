@@ -1391,29 +1391,59 @@
 // i.e. mulitply x by itself n times
 // e.g. pow(2, 3) = 8
 
-function pow(x, n) {
-  let tot = 1;
-  for (let i = 1; i <= n; i++) {
-    tot *= x;
-    console.log("i:", i, "tot:", tot);
-  }
-  return tot;
-}
-console.log(pow(8, 3)); // 512
+// function pow(x, n) {
+//   let tot = 1;
+//   for (let i = 1; i <= n; i++) {
+//     tot *= x;
+//     console.log("i:", i, "tot:", tot);
+//   }
+//   return tot;
+// }
+// console.log(pow(8, 3)); // 512
 
-function pow2(x, n) {
-  if (n == 1) {
-    return x;
+// function pow2(x, n) {
+//   if (n == 1) {
+//     return x;
+//   } else {
+//     return x * pow2(x, n - 1);
+//   }
+// }
+// console.log(pow2(8, 1)); // 512
+
+// // the shortest version!!!
+// function pow3(x, n) {
+//   console.log("x:", x, "n:", n);
+//   return n == 1 ? x : x * pow3(x, n - 1);
+// }
+// console.log(pow3(8, 3));
+
+// recursive transversals
+// write a function to get the sum of all salaries
+let company = {
+  sales: [
+    { name: "John", salary: 1000 },
+    { name: "Alice", salary: 1600 },
+  ],
+  development: {
+    sites: [
+      { name: "Peter", salary: 2000 },
+      { name: "Alex", salary: 1800 },
+    ],
+    internals: [{ name: "Jack", salary: 1300 }],
+  },
+};
+
+function sumSalaries(department) {
+  let sum = 0;
+  if (Array.isArray(department)) {
+    console.log(Object.values(department));
+    sum = Object.values(department).reduce(
+      (prev, curr) => prev.salary + curr.salary
+    );
   } else {
-    return x * pow2(x, n - 1);
+    console.log("not an array");
   }
+  return sum;
 }
-console.log(pow2(8, 1)); // 512
-
-// the shortest version!!!
-function pow3(x, n) {
-  console.log("x:", x, "n:", n);
-  return n == 1 ? x : x * pow3(x, n - 1);
-}
-console.log(pow3(8, 3));
+console.log(sumSalaries(company));
 // // ******  functions END ******\\
