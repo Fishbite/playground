@@ -1386,4 +1386,34 @@
 // }
 // console.log(factorial(10));
 
+// ****** recursion
+// write a function that raises x to a natural power of n
+// i.e. mulitply x by itself n times
+// e.g. pow(2, 3) = 8
+
+function pow(x, n) {
+  let tot = 1;
+  for (let i = 1; i <= n; i++) {
+    tot *= x;
+    console.log("i:", i, "tot:", tot);
+  }
+  return tot;
+}
+console.log(pow(8, 3)); // 512
+
+function pow2(x, n) {
+  if (n == 1) {
+    return x;
+  } else {
+    return x * pow2(x, n - 1);
+  }
+}
+console.log(pow2(8, 1)); // 512
+
+// the shortest version!!!
+function pow3(x, n) {
+  console.log("x:", x, "n:", n);
+  return n == 1 ? x : x * pow3(x, n - 1);
+}
+console.log(pow3(8, 3));
 // // ******  functions END ******\\
