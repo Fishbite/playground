@@ -1419,31 +1419,105 @@
 
 // recursive transversals
 // write a function to get the sum of all salaries
-let company = {
-  sales: [
-    { name: "John", salary: 1000 },
-    { name: "Alice", salary: 1600 },
-  ],
-  development: {
-    sites: [
-      { name: "Peter", salary: 2000 },
-      { name: "Alex", salary: 1800 },
-    ],
-    internals: [{ name: "Jack", salary: 1300 }],
-  },
-};
+// let company = {
+//   sales: [
+//     { name: "John", salary: 1000 },
+//     { name: "Alice", salary: 1600 },
+//   ],
+//   development: {
+//     sites: {
+//       siteA: [
+//         { name: "Gary", salary: 1000 },
+//         { name: "Penny", salary: 1600 },
+//       ],
+//       siteB: [
+//         { name: "Baggsy", salary: 1000 },
+//         { name: "Fanny", salary: 1600 },
+//       ],
+//     },
+//     internals: [{ name: "Jack", salary: 1300 }],
+//   },
+// };
 
-function sumSalaries(department) {
-  let sum = 0;
-  if (Array.isArray(department)) {
-    console.log(Object.values(department));
-    sum = Object.values(department).reduce(
-      (prev, curr) => prev.salary + curr.salary
-    );
-  } else {
-    console.log("not an array");
-  }
-  return sum;
-}
-console.log(sumSalaries(company));
+// function sumSalaries(department) {
+//   if (Array.isArray(department)) {
+//     return department.reduce((prev, curr) => prev + curr.salary, 0);
+//   } else {
+//     let sum = 0;
+//     for (let subDept of Object.values(department)) {
+//       // console.log(subDept, sumSalaries(subDept));
+//       sum += sumSalaries(subDept);
+//     }
+//     return sum;
+//   }
+// }
+// console.log(sumSalaries(company));
+
+// let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null,
+//       },
+//     },
+//   },
+// };
+
+// function printList(list) {
+//   let tmp = list;
+//   console.log(tmp);
+//   for (val of tmp) {
+//     // console.log(Object.values(list));
+//     console.log(tmp.val);
+//     tmp.next;
+//   }
+//   return "DONE!";
+// }
+
+// function printList(list) {
+//   let tmp = list;
+//   console.log(list.value, list.next.value);
+
+//   while (tmp) {
+//     console.log(tmp.value);
+//     tmp = tmp.next;
+//   }
+// }
+// console.log(printList(list));
+
+// function printList(list) {
+//   // console.log(list.value);
+//   if (list.next) {
+//     printList(list.next);
+//   }
+//   console.log(list.value);
+// }
+// printList(list);
+
+// function factorial(num) {
+//   console.log(num);
+//   if (num === 1) {
+//     return num;
+//   } else {
+//     return num * factorial(num - 1);
+//   }
+// }
+// console.log(factorial(5));
+
+// function fibonacci(n) {
+//   // Base case
+//   if (n === 0 || n === 1) {
+//     return n;
+//   }
+//   // Recursive case
+//   else {
+//     return fibonacci(n - 1) + fibonacci(n - 2);
+//   }
+// }
+
+// console.log(fibonacci(10));
 // // ******  functions END ******\\
