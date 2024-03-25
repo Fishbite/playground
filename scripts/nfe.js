@@ -39,3 +39,20 @@ console.log("Named function Expressions");
 // let decreaseCount = makeCounter.decrease;
 // console.log(decreaseCount()); // 3
 // console.log(decreaseCount()); // 2
+
+// A better way to add mmethods to counter
+function makeCounter2() {
+  function counter() {
+    return counter.count++;
+  }
+  counter.count;
+
+  counter.set = (val) => (counter.count = val);
+  counter.decrease = () => --counter.count;
+
+  return counter;
+}
+let counter = makeCounter2();
+console.log(counter.set(4));
+console.log(counter.decrease());
+console.log(counter.decrease());
