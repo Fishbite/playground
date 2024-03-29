@@ -173,43 +173,105 @@ function Clock({ template }) {
 // clock.start();
 // setTimeout(clock.stop, 10000);
 
-class MyClock {
-  constructor({ template }) {
-    this.template = template;
+// class MyClock {
+//   constructor({ template }) {
+//     this.template = template;
+//   }
+
+//   render() {
+//     let date = new Date();
+
+//     let hours = date.getHours();
+//     if (hours < 10) hours = "0" + hours;
+
+//     let mins = date.getMinutes();
+//     if (mins < 10) mins = "0" + mins;
+
+//     let secs = date.getSeconds();
+//     if (secs < 10) secs = "0" + secs;
+
+//     let output = this.template
+//       .replace("h", hours)
+//       .replace("m", mins)
+//       .replace("s", secs);
+
+//     console.log(output);
+//   }
+
+//   stop() {
+//     clearInterval(this.timer);
+//     console.log("myClock stopped");
+//   }
+
+//   start() {
+//     console.log("myClock started");
+//     this.render();
+//     this.timer = setInterval(() => this.render(), 1000);
+//   }
+// }
+
+// let myClock = new MyClock({ template: "h:m:s" });
+// myClock.start();
+// setTimeout(() => myClock.stop(), 5000);
+
+class Animal {
+  constructor(name) {
+    this.speed = 0; // property
+    this.name = name; // property passed as parameter
   }
 
-  render() {
-    let date = new Date();
-
-    let hours = date.getHours();
-    if (hours < 10) hours = "0" + hours;
-
-    let mins = date.getMinutes();
-    if (mins < 10) mins = "0" + mins;
-
-    let secs = date.getSeconds();
-    if (secs < 10) secs = "0" + secs;
-
-    let output = this.template
-      .replace("h", hours)
-      .replace("m", mins)
-      .replace("s", secs);
-
-    console.log(output);
+  run(speed) {
+    // method
+    this.speed = speed;
+    console.log(`${this.name} runs at ${this.speed}cm per second.`);
   }
 
   stop() {
-    clearInterval(this.timer);
-    console.log("myClock stopped");
-  }
-
-  start() {
-    console.log("myClock started");
-    this.render();
-    this.timer = setInterval(() => this.render(), 1000);
+    // method
+    this.speed = 0;
+    console.log(`${this.name} stands still.`);
   }
 }
 
-let myClock = new MyClock({ template: "h:m:s" });
-myClock.start();
-setTimeout(() => myClock.stop(), 5000);
+// class Rabbit extends Animal {
+//   stop() {
+//     // replaces parents class' `stop` method
+//     // ***
+//   }
+// }
+
+/*
+Usually, however, we don’t want to totally replace a parent 
+method, but rather to build on top of it to tweak or extend 
+its functionality. We do something in our method, but call 
+the parent method before/after it or in the process.
+
+Classes provide "super" keyword for that.
+
+    super.method(...) to call a parent method.
+    super(...) to call a parent constructor (inside our constructor only).
+
+*/
+
+class Rabbit extends Animal {
+  hide() {
+    // method of Rabbit
+    console.log(`${this.name} hides!`); // gets `name` from `Animal`
+  }
+
+  stop() {
+    // method of `Rabbit`
+    console.log("Child objects `this`", this);
+    // using the `Animal` stop method
+    super.stop(); // calls parent's `stop` method
+    setTimeout(() => this.hide(), 1000); // calls Rabbit's `hide` method binding `this` to the child `Object`
+  }
+}
+
+let buggsy = new Rabbit("Bugs Bunny");
+// Bugs Bunny runs at 50cm per second.
+buggsy.run(50); // calls `Animal` `stop` method
+
+// Bugs Bunny stands still.
+// Bugs Bunny hides!
+setTimeout(() => buggsy.stop(), 2000); //calls `Rabbit` `stop` method
