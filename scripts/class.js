@@ -251,9 +251,17 @@ Classes provide "super" keyword for that.
     super.method(...) to call a parent method.
     super(...) to call a parent constructor (inside our constructor only).
 
+    a derived constructor must call `super` in order to execute its parent (base) constructor, otherwise the object for `this` won’t be created. And we’ll get an error.
 */
 
 class Rabbit extends Animal {
+  constructor(name, earLength) {
+    super(); // call the parent `constructor
+    this.speed = 0;
+    this.name = name;
+    this.earLength = earLength;
+  }
+
   hide() {
     // method of Rabbit
     console.log(`${this.name} hides!`); // gets `name` from `Animal`
@@ -268,7 +276,7 @@ class Rabbit extends Animal {
   }
 }
 
-let buggsy = new Rabbit("Bugs Bunny");
+let buggsy = new Rabbit("Bugs Bunny", 10);
 // Bugs Bunny runs at 50cm per second.
 buggsy.run(50); // calls `Animal` `stop` method
 
