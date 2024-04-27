@@ -51,6 +51,7 @@ try {
   console.log("Start of catch block");
 
   console.log(err);
+  // console.log(err.stack);
 
   console.log("End of catch block");
 }
@@ -63,11 +64,12 @@ try {
   if (!user.role) {
     throw new Error("WTF? No 'user.role' in the data", {
       cause: "some muppet didn't give the fucker a job",
-    }); // custom error with message
+    }); // custom error with message & cause
   }
 } catch (err) {
   console.log(`Oops! o^O`);
   console.log(`name: ${err.name}
 message: ${err.message}
-cause: ${err.cause}`);
+cause: ${err.cause}
+stack: ${err.stack}`);
 }
