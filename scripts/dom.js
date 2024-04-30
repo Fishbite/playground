@@ -7,14 +7,14 @@ const table3 = document.body.firstElementChild;
 
 // table.children[0].children[0].children[3].style.backgroundColor = "red";
 
-// paint a diagonal of red cells
-// dont paint the sixth row
+// render a diagonal of red cells
+// dont render the sixth row
 // for (let i = 0; i < table.rows.length - 1; i++) {
 //   let row = table.rows[i];
 //   row.cells[i].style.backgroundColor = "red";
 // }
 
-// To paint a checkerboard of blue squares
+// To render a checkerboard of blue squares
 // First, loop through each row
 for (let i = 0; i < table3.rows.length; i++) {
   // give each row a temporary number
@@ -27,32 +27,51 @@ for (let i = 0; i < table3.rows.length; i++) {
   // Then loop through each column
   for (; colNum < numCols; colNum++) {
     // create reference each cell on each iteration
-    let cell = table3.rows[rowNum].cells[colNum];
+    let td = table3.rows[rowNum].cells[colNum];
 
     // give each cell a temporary number
-    let cellNum = cell.cellIndex;
+    let cellNum = td.cellIndex;
 
-    // paint every other odd numbered cell on each even numbered row
-    // & paint every other even numbered cell on odd numbered rows
+    // render every other odd numbered cell on each even numbered row
+    // & render every other even numbered cell on odd numbered rows
     // don't forget column number is index number so column 2 is index 1
     if (
       (rowNum % 2 === 0 && cellNum % 2 === 0) ||
       (rowNum % 2 !== 0 && cellNum % 2 !== 0)
     ) {
-      cell.style.backgroundColor = "blue";
+      td.style.backgroundColor = "blue";
     }
   }
 }
 
-const table4 = document.body.lastElementChild.previousElementSibling;
+const table4 =
+  document.body.lastElementChild.previousElementSibling.previousElementSibling
+    .previousElementSibling;
 
 // Loop through rows
 for (let row of table4.rows) {
   // Loop through cells
-  for (let cell of row.cells) {
+  for (let td of row.cells) {
     // Apply checkerboard pattern
-    if ((cell.cellIndex + row.rowIndex) % 2 === 1) {
-      cell.style.backgroundColor = "red";
+    if ((td.cellIndex + row.rowIndex) % 2 === 1) {
+      td.style.backgroundColor = "red";
     }
   }
 }
+
+// render a diagonal line
+for (let i = 0; i < table4.rows.length; i++) {
+  let row = table4.rows[i];
+
+  if (row.cells[i]) row.cells[i].style.backgroundColor = "purple";
+}
+
+let pete =
+  document.body.lastElementChild.previousElementSibling.children[1].innerHTML;
+console.log(pete);
+
+let users =
+  document.body.lastElementChild.previousElementSibling.previousElementSibling
+    .innerHTML;
+
+console.log(users);
