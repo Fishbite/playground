@@ -70,8 +70,28 @@ let pete =
   document.body.lastElementChild.previousElementSibling.children[1].innerHTML;
 console.log(pete);
 
-let users =
-  document.body.lastElementChild.previousElementSibling.previousElementSibling
-    .innerHTML;
+let users = document.getElementById("users");
 
-console.log(users);
+let blueTitle = "<h1>The Blue Table</h1>";
+let redTitle = "<h1>The Red Table</h1>";
+
+// stick a title before the first table
+table3.insertAdjacentHTML("beforebegin", blueTitle);
+// stick a title before the first table
+table4.insertAdjacentHTML("beforebegin", redTitle);
+
+let john = document.getElementById("userJohn");
+pete = document.getElementById("userPete");
+console.log(pete, john);
+
+// take `pete` and put `john` after him
+pete.after(john);
+
+// take pete and put table4 after him
+pete.after(table4);
+
+// clone table4 node
+// note `true` copies the children of the cloned element too
+// i.e. tr's & td's & text
+let table5 = table4.cloneNode(true);
+john.after(table5);
