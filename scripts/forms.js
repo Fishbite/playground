@@ -36,7 +36,7 @@ console.log(form2.lovehate[0]); // <input name="radioinput" type="radio" value="
 console.log(form2.lovehate[0].value); // love
 
 // log the value of the second radioinput element
-console.log(form2.lovehate[1].value); // love
+console.log(form2.lovehate[1].value); // hate
 
 // for a text area, always use `value` to get user input
 // Do NOT use `innerHTML` it only stores what was initially on the page
