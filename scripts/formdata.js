@@ -1,8 +1,5 @@
-/*
-    ********************* FormData() *********************
-    Using `FormData()` to wrap a file to send to a server
-
-*/
+// ********************* FormData() *********************
+// Using `FormData()` to wrap a file to send to a server
 
 // ****** write to the document's element with `id="app"` ****** \\
 document.getElementById("app").innerHTML = `
@@ -13,53 +10,56 @@ document.getElementById("app").innerHTML = `
     `;
 
 // *** make a reference to the file selector ***
+
 const fileInput = document.querySelector("#fileInput");
 
 // Use `fetch` to upload a file to the server
-function upload(file) {
-  const apiUrl = "https://file.io"; // API endpoint
-  const formData = new FormData(); // FormData
-  formData.append("file", file);
 
-  console.log(formData);
+// function upload(file) {
+//   const apiUrl = "https://file.io"; // API endpoint
+//   const formData = new FormData(); // FormData
+//   formData.append("file", file);
 
-  // Make POST request to API endpoint
-  fetch(apiUrl, {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => {
-      // handel a duff response
-      if (!response.ok) {
-        return response.json().then((json) => {
-          throw new Error(json.message);
-        });
-      } else {
-        return response.json();
-      }
-    })
-    .then((data) => {
-      console.log(data.link);
-      writeFileLink(data);
-    })
-    .catch((error) => console.error("Error", error));
-}
+//   console.log(formData);
 
-function writeFileLink(data) {
+//   // Make POST request to API endpoint
+//   fetch(apiUrl, {
+//     method: "POST",
+//     body: formData,
+//   })
+//     .then((response) => {
+//       // handel a duff response
+//       if (!response.ok) {
+//         return response.json().then((json) => {
+//           throw new Error(json.message);
+//         });
+//       } else {
+//         return response.json();
+//       }
+//     })
+//     .then((data) => {
+//       console.log(data.link);
+//       writeFileLink(data);
+//     })
+//     .catch((error) => console.error("Error", error));
+// }
+
+function writeFileLink(link) {
+  // console.log("The link is", link);
   const fileLink = document.getElementById("filelink");
-  fileLink.href = data.link;
-  fileLink.innerText = "Get your file from here...";
+  fileLink.href = link;
+  fileLink.innerText = "'Right Click' then 'Copy Link'";
 }
 
 // ****** event listener *******
-fileInput.addEventListener("change", (event) => {
-  const files = event.target.files;
-  if (files.length > 0) {
-    upload(files[0]);
-  } else {
-    console.log("No file selected");
-  }
-});
+// fileInput.addEventListener("change", (event) => {
+//   const files = event.target.files;
+//   if (files.length > 0) {
+//     upload(files[0]);
+//   } else {
+//     console.log("No file selected");
+//   }
+// });
 
 /*
     Great question! While `fetch` is indeed asynchronous and returns a Promise, using `await` with `fetch` is part of the `async/await` syntax introduced in modern JavaScript to work with asynchronous code more conveniently. Let's dive into why and when you would use `await` with `fetch`.
@@ -102,6 +102,8 @@ async function upload(file) {
 
     const data = await response.json();
     console.log(data);
+    console.log(data.link);
+    writeFileLink(data.link);
   } catch (error) {
     console.error("Error:", error);
   }
@@ -116,9 +118,6 @@ fileInput.addEventListener("change", (event) => {
     console.log("No file selected");
   }
 });
-
-/*
- */
 
 // ### Breaking Down the Example:
 
