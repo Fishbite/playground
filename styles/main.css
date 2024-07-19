@@ -3,7 +3,9 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-* {
+*,
+::before,
+::after {
   margin: 0;
   padding: 0;
 }
