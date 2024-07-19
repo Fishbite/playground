@@ -31,4 +31,13 @@ line("hsl(46, 45%, 45%)", 10, 207, 184, 207, 96);
 
 ctx.fillStyle = "hsla(46, 45%, 45%, 0.5)";
 ctx.strokeRect(36, 64, 64, 50);
-ctx.fillRect(48, 64, 40, 50);
+ctx.fillRect(36, 64, 64, 50);
+
+let ww = window.innerWidth;
+let wh = window.innerHeight;
+
+let datumX = ww / 2 - canvas.width / 2;
+let datumY = wh / 2 - canvas.height / 2;
+console.log(ww, datumX);
+
+onmousemove = (e) => console.log("mouse location:", e.x - datumX, e.y - datumY);
