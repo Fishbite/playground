@@ -10,7 +10,7 @@ canvas.setAttribute("height", "256");
 document.body.appendChild(canvas);
 let ctx = canvas.getContext("2d");
 
-function line(color = "black", width = "1px", x1, y1, x2, y2) {
+function line(color = "red", width = 1, x1, y1, x2, y2) {
   //1. Set the line style options
   ctx.strokeStyle = color;
   ctx.lineWidth = width;
@@ -21,28 +21,14 @@ function line(color = "black", width = "1px", x1, y1, x2, y2) {
   ctx.stroke();
 }
 
-line("black", "1px", 0, 128, 128, 128);
+line("hsl(46, 45%, 45%)", 10, 1, 128, 129, 128);
 
-// ctx.strokeStyle = "hsl(46, 45%, 45%)";
-// ctx.lineWidth = "1px";
-// //2. Draw the line
-// ctx.beginPath();
-// ctx.moveTo(0, 0);
-// ctx.lineTo(512, 256);
-// ctx.stroke();
+line("hsl(46, 45%, 45%)", 20, 11, 128, 11, 256);
+line("hsl(46, 45%, 45%)", 20, 119, 128, 119, 256);
 
-// let canvas = document.createElement("canvas");
-// canvas.setAttribute("width", "256");
-// canvas.setAttribute("height", "256");
-// canvas.style.border = "1px dashed black";
-// document.body.appendChild(canvas);
-// let ctx = canvas.getContext("2d");
+line("hsl(46, 45%, 45%)", 10, 148, 184, 212, 184);
+line("hsl(46, 45%, 45%)", 10, 207, 184, 207, 96);
 
-// //1. Set the line style options
-// ctx.strokeStyle = "black";
-// ctx.lineWidth = 3;
-// //2. Draw the line
-// ctx.beginPath();
-// ctx.moveTo(0, 0);
-// ctx.lineTo(128, 128);
-// ctx.stroke();
+ctx.fillStyle = "hsla(46, 45%, 45%, 0.5)";
+ctx.strokeRect(36, 64, 64, 50);
+ctx.fillRect(48, 64, 40, 50);
