@@ -36,49 +36,119 @@ line("hsl(46, 45%, 45%)", 10, 207, 184, 207, 96);
 let ww = window.innerWidth;
 let wh = window.innerHeight;
 
+// set references to the top left of the canvas
 let datumX = ww / 2 - canvas.width / 2;
 let datumY = wh / 2 - canvas.height / 2;
-console.log(ww, datumX);
 
 // onmousemove = (e) => console.log("mouse location:", e.x - datumX, e.y - datumY);
 
+// ########################################################
+
+//              A PROGRAM TO DRAW ON THE CANVAS
+
+// ########################################################
+
+// listen for clicks to initiate or continue line drawing
 canvas.addEventListener("click", drawLine, false);
+
+// listen for keys to set drawing params
 document.addEventListener("keydown", handleKey, false);
 
+// if drawing = false, the start point of the line
+// has not been defined. i.e. the first `moveTo(x, y)`
+// has not been completed
 let drawing = false;
-let tx, ty;
+
+// tx = target point x
+// ty = target point y
+// lastX = last end x point of the line
+// lastY = last end y point of the line
+// setX / Y used to set the target point x or y when vertical
+// or horizontal lines are to be drawn
+let tx, ty, lastX, lastY, setX, setY;
 
 function drawLine(e) {
+  // set the target points relative to the canvas top left
+  tx = e.clientX - datumX;
+  ty = e.clientY - datumY;
+
+  // if there isn't a line end point to continue from
   if (!drawing) {
-    tx = e.clientX - datumX;
-    ty = e.clientY - datumY;
+    // begin a new path and move to the start point
     ctx.beginPath();
+    // move to the start point of the line
+    // i.e. the click point on the canvas
     ctx.moveTo(tx, ty);
+
+    // store the current target points in last point vars
+    [lastX, lastY] = [tx, ty];
+
+    // set to true so the next mouse click draws
+    // the line starting from last line end point
     drawing = true;
+
+    // if key 'x' has been pressed we want to draw a
+    // horizontal line, so set ty to the last y end point via setY
+  } else if (setY) {
+    // draw a horizontal line using the last y end point
+    ctx.lineTo(tx, setY);
+    ctx.stroke();
+    setY = null; // remove value
+
+    // store the current target points in last point vars
+    [lastX, lastY] = [tx, setY];
+    // if key 'y' has been pressed we want to draw a
+    // vertical line, so set tx to the last x end point via setX
+  } else if (setX) {
+    console.log(setX);
+
+    // draw a vertical line using the last x end point
+    ctx.lineTo(setX, ty);
+    ctx.stroke();
+    setX = null; // remove value
+
+    // store the current target points in last point vars
+    [lastX, lastY] = [setX, ty];
+
+    // draw a line starting from the last line end point
+    // to the target x / y points defined by mouse click
   } else {
-    console.log("drawing = ", drawing);
-    tx = e.clientX - datumX;
-    ty = e.clientY - datumY;
     ctx.lineTo(tx, ty);
     ctx.stroke();
+
+    // store the current target points in last point vars
+    [lastX, lastY] = [tx, ty];
+    console.log(lastX, tx, lastY, ty);
   }
-  console.log(tx, ty);
 }
 
 function handleKey(e) {
   console.log(e.key);
 
+  // has a number been pressed?
   if (isFinite(e.key)) {
-    ctx.lineWidth = e.key;
+    ctx.lineWidth = e.key; // set the line width
   }
 
+  // if the enter key is pressed, start a new line
   if (e.key === "Enter") {
     drawing = false;
   }
 
+  // close the path when the 'c' key is pressed
   if (e.key === "c") {
     ctx.closePath();
     ctx.stroke();
     drawing = false;
+  }
+
+  // draw a horizontal line if the 'x' key has been pressed
+  if (e.key === "x") {
+    setY = lastY;
+  }
+
+  // draw a vertical line if the 'y' key has been pressed
+  if ((e.key = "y")) {
+    setX = lastX;
   }
 }
